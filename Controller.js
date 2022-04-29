@@ -1,5 +1,3 @@
-//const Model = require('./mockModel');
-//const View = require('./View');
 
 class Controller {
   constructor(model, view) {
@@ -23,7 +21,7 @@ class Controller {
     do {
       const card = cards[this.currentCardIndex];
       const answer = await this.view.askQuestion(card.question);
-      if (answer === card.answer) { 
+      if (card.isRight(answer)) { 
         score += 100 / cards.length; 
         this.view.message('Верно!')
       } else {
@@ -33,7 +31,6 @@ class Controller {
       this.currentCardIndex += 1;
     } while (this.currentCardIndex < cards.length);
     this.view.message(`Вы набрали ${Math.round(score)}%!`);
-
   }
 }
 

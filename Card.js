@@ -7,7 +7,7 @@ class Card {
     this.answer = answer;
   }
 
-  isRisht(answer) {
+  isRight(answer) {
     return this.answer === answer;
   }
 }
