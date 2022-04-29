@@ -1,28 +1,32 @@
-let fs = require('fs');
-const { isPromise } = require('util/types');
+const fs = require('fs').promises;
 
 class Model {
   constructor(path) {
     this.cards = [];
     this.topics = [];
-    this.files = ['nightawk_flashcard_data.txt', 'otter_flashcard_data.txt', 'raccoon_flashcard_data.txt'];
+    this.files = ['nighthawk_flashcard_data.txt', 'otter_flashcard_data.txt', 'raccoon_flashcard_data.txt'];
     this.path = path;
-
   }
 
-  async function readTopics(f) {
+  async readTopics() {
     for (let i = 0; i < this.files.length; i++) {
-      const data = await fs.readFile(this.files[i])
+      try {
+        const data = await fs.readFile(`./topics/${this.files[i]}`, 'utf-8');
+        this.createTopic(data);
+      } catch (err) {
+        console.log(err);
+      }
     }
-    console.log(data)  
   }
 
-
-  
-  createTopic(data) {
-  
+  createTopic(data, topic) {
+    let arrayData = data.split('\n')
+    console.log(arrayData)
+    let newCard = new Card()
   }
-
 }
+
+const model = new Model('');
+model.readTopics();
 
 module.exports = Model;
