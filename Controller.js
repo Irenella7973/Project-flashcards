@@ -13,7 +13,6 @@ class Controller {
   }
 
   async printTopicsController(topicsMenu) {
-    console.log(this.model.topics);
     for (const topic of this.model.topics) {
       this.view.showTopic(topic);
     }
@@ -24,10 +23,9 @@ class Controller {
   async play(topic) {
     const cards = this.model.getTopic(topic);
     let score = 0;
-    let answer;
     do {
       const card = cards[this.currentCardIndex];
-      answer = await this.view.askQuestion(card.question);
+      const answer = await this.view.askQuestion(card.question);
       if (answer === card.answer) { score += 100 / cards.length; }
       this.currentCardIndex += 1;
     } while (this.currentCardIndex < cards.length && answer !== ':q');
