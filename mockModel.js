@@ -26,7 +26,8 @@ class mockModel  {
   }
 
   getTopic (topic) {
-    return this.cards.filter(card => card.topic = topic);
+    console.log(this.cards);
+    return this.cards.filter(card => card.topic = this.topics[topic]);
   }
 }
 
