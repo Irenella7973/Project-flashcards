@@ -11,6 +11,7 @@ class View {
   }
 
   askQuestion(question) {
+    console.log('\n');
     console.log(question);
     const input = prompt('>');
     return input;

@@ -11,7 +11,6 @@ class Model {
   }
 
   async readTopics(f) {
-    console.log('rt');
     const files = await fs.readdir('./topics', 'utf-8');
     for (let i = 0; i < files.length; i++) {
       const data = await fs.readFile(`./topics/${files[i]}`, 'utf-8')

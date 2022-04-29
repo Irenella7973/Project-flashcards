@@ -9,21 +9,17 @@ class Controller {
   }
 
   run() {
-    console.log('run');
     this.model.readTopics(this.printTopicsController.bind(this));
   }
 
   async printTopicsController(topicsMenu) {
-    console.log('ptc');
     this.view.showTopics(this.model.topics);
     const currentTopic = await this.view.getTopic();
     this.play(currentTopic);
   }
 
   async play(topic) {
-
     const cards = this.model.getTopic(topic);
-    console.log(cards);
     let score = 0;
     do {
       const card = cards[this.currentCardIndex];
@@ -37,7 +33,7 @@ class Controller {
       }
       this.currentCardIndex += 1;
     } while (this.currentCardIndex < cards.length);
-    this.view.message(`Вы набрали ${score}%!`);
+    this.view.message(`Вы набрали ${Math.round(score)}%!`);
 
   }
 }
