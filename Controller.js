@@ -1,3 +1,6 @@
+const Model = require('./mockModel');
+const View = require('./View');
+
 class Controller {
   constructor(model, view) {
     this.model = model
@@ -16,26 +19,33 @@ class Controller {
   }
 
   async printTopicsController(topicsMenu) {
+    console.log(this);
     for (topic in this.model.topics) {
       this.view.showTopic(topic);
     }
     const currentTopic = await this.view.getTopic()
-    startQuiz(topic)
+    play(currentTopic);
     // Тут нужно попросить экземпляр класса view вывести меню пользователю, 
     // а также дождаться ответа последнего
   }
 
-  async step(card) {
-    const answer = await this.view.askQuestion(card.question);
-  }
+
 
   async play(topic) {
     const cards = this.model.getTopic(topic);
     do {
-      const step = await this.step(cards[currentCard]);
+      const answer = await this.view.askQuestion(cards[this.currentCardIndex].question);
+      console.log(answer);
       currentCard += 1;
-    } while(currentCard < cards.length)
+    } while(currentCard < cards.length && answer != ':q');
   } 
 }
+
+
+const model = new Model()
+//console.log(model);
+const controller = new Controller(model, new View());
+//controller.play('nighthawk');
+controller.run();
 
 module.exports = Controller
