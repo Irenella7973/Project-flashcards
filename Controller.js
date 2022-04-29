@@ -1,24 +1,37 @@
+const Model = require('./mockModel');
+const View = require('./View');
+
 class Controller {
   constructor(model, view) {
-    this.model = model
-    this.view = view
+    this.model = model;
+    this.view = view;
+    this.currentCardIndex = 0;
   }
 
   run() {
-    // Просим экземпляр класса модели прочитать папку со всеми темами и составить меню.
-    // Попутно передаем метод контроллера this.printTopicsController,
-    // так как нам нужно отправить сформинованное меню на вывод в экземпляр класса view
-    // после того, как завершится асинхронная операция чтения папки
-    // Здесь this.printTopicsController — является callback'ом  
-    this.model.readTopics(this.printTopicsController)
+    this.model.readTopics(this.printTopicsController.bind(this));
   }
 
-  printTopicsController(topicsMenu) {
-    // Тут нужно попросить экземпляр класса view вывести меню пользователю, 
-    // а также дождаться ответа последнего
+  async printTopicsController(topicsMenu) {
+    for (const topic of this.model.topics) {
+      this.view.showTopic(topic);
+    }
+    const currentTopic = await this.view.getTopic();
+    this.play(currentTopic);
   }
 
-  
+  async play(topic) {
+    const cards = this.model.getTopic(topic);
+    let score = 0;
+    do {
+      const card = cards[this.currentCardIndex];
+      const answer = await this.view.askQuestion(card.question);
+      if (answer === card.answer) { score += 100 / cards.length; }
+      this.currentCardIndex += 1;
+    } while (this.currentCardIndex < cards.length);
+    this.view.message(`Вы набрали ${score}%!`);
+  }
 }
 
-module.exports = Controller
+
+module.exports = Controller;

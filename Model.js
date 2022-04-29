@@ -1,5 +1,7 @@
+
 let fs = require('fs').promises;
 let Card = require('./Card')
+
 const { isPromise } = require('util/types');
 
 class Model {
@@ -13,12 +15,13 @@ class Model {
   async readTopics() {
     const topicsDir = await fs.readdir('./topics', 'utf-8');
     for (let i = 0; i < this.files.length; i++) {
-      const data = await fs.readFile(`./topics/${this.files[i]}`, 'utf-8').then((data) => this.createTopic(data));  
+      const data = await fs.readFile(`./topics/${this.files[i]}`, 'utf-8').then((data) => this.createTopic(data));
     }
     //  Я не понял где именно запустить функцию 'f'
   }
 
   createTopic(data) {
+
     let arrayData1 = data.split('\n');
     let arrayData = arrayData1.filter((el) => el !== '');
     // console.log(arrayData)
@@ -31,6 +34,7 @@ class Model {
       console.log(this.topics)
     // }
     // console.log(this.topics)
+
   }
 }
 // const ttt = new Model();
@@ -38,5 +42,6 @@ class Model {
 
 const model = new Model('');
 model.readTopics();
+
 
 module.exports = Model;
