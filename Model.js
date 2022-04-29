@@ -1,8 +1,9 @@
 
 let fs = require('fs').promises;
 let Card = require('./Card')
-
-const { isPromise } = require('util/types');
+const {
+  isPromise
+} = require('util/types');
 
 class Model {
   constructor(path) {
@@ -24,15 +25,15 @@ class Model {
 
     let arrayData1 = data.split('\n');
     let arrayData = arrayData1.filter((el) => el !== '');
-    // console.log(arrayData)
-    // for (let i = 0; i < 1; i++){
-    //   // if(i === arrayData[0]){
 
-    //   // }
-      this.topics.push(arrayData[0])
-      
-      console.log(this.topics)
-    // }
+    this.topics.push(arrayData[0]);
+    for (let i = 1; i < arrayData.length; i += 2) {
+
+      let newCards = new Card(arrayData[0], arrayData[i], arrayData[i + 1]);
+      this.cards.push(newCards)
+    }
+    console.log(this.cards)
+
     // console.log(this.topics)
 
   }
