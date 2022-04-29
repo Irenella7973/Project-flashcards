@@ -1,5 +1,5 @@
-const Model = require('./mockModel');
-const View = require('./View');
+//const Model = require('./mockModel');
+//const View = require('./View');
 
 class Controller {
   constructor(model, view) {
@@ -9,17 +9,21 @@ class Controller {
   }
 
   run() {
+    console.log('run');
     this.model.readTopics(this.printTopicsController.bind(this));
   }
 
   async printTopicsController(topicsMenu) {
+    console.log('ptc');
     this.view.showTopics(this.model.topics);
     const currentTopic = await this.view.getTopic();
     this.play(currentTopic);
   }
 
   async play(topic) {
+
     const cards = this.model.getTopic(topic);
+    console.log(cards);
     let score = 0;
     do {
       const card = cards[this.currentCardIndex];
