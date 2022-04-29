@@ -1,4 +1,5 @@
-const fs = require('fs').promises;
+let fs = require('fs').promises;
+const { isPromise } = require('util/types');
 
 class Model {
   constructor(path) {
@@ -9,14 +10,11 @@ class Model {
   }
 
   async readTopics() {
+    const topicsDir = await fs.readdir('./topics', 'utf-8');
     for (let i = 0; i < this.files.length; i++) {
-      try {
-        const data = await fs.readFile(`./topics/${this.files[i]}`, 'utf-8');
-        this.createTopic(data);
-      } catch (err) {
-        console.log(err);
-      }
+      const data = await fs.readFile(`./topics/${this.files[i]}`, 'utf-8').then((data) => this.createTopic(data));  
     }
+    //  Я не понял где именно запустить функцию 'f'
   }
 
   createTopic(data, topic) {
@@ -25,6 +23,8 @@ class Model {
     let newCard = new Card()
   }
 }
+const ttt = new Model();
+ttt.readTopics();
 
 const model = new Model('');
 model.readTopics();
