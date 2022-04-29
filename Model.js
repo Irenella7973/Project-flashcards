@@ -1,3 +1,4 @@
+
 let fs = require('fs').promises;
 let Card = require('./Card')
 const {
@@ -21,6 +22,7 @@ class Model {
   }
 
   createTopic(data) {
+
     let arrayData1 = data.split('\n');
     let arrayData = arrayData1.filter((el) => el !== '');
 
@@ -33,6 +35,7 @@ class Model {
     console.log(this.cards)
 
     // console.log(this.topics)
+
   }
 }
 // const ttt = new Model();
@@ -40,5 +43,6 @@ class Model {
 
 const model = new Model('');
 model.readTopics();
+
 
 module.exports = Model;
