@@ -1,4 +1,7 @@
-const fs = require('fs').promises;
+
+let fs = require('fs').promises;
+let Card = require('./Card')
+
 const { isPromise } = require('util/types');
 
 class Model {
@@ -19,10 +22,26 @@ class Model {
 
   createTopic(data) {
 
+    let arrayData1 = data.split('\n');
+    let arrayData = arrayData1.filter((el) => el !== '');
+    // console.log(arrayData)
+    // for (let i = 0; i < 1; i++){
+    //   // if(i === arrayData[0]){
+
+    //   // }
+      this.topics.push(arrayData[0])
+      
+      console.log(this.topics)
+    // }
+    // console.log(this.topics)
+
   }
 }
-const ttt = new Model();
-ttt.readTopics();
+// const ttt = new Model();
+// ttt.readTopics();
 
-// console.log(Model.readTopics());
+const model = new Model('');
+model.readTopics();
+
+
 module.exports = Model;
