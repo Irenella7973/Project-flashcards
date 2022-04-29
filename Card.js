@@ -7,8 +7,8 @@ class Card {
     this.answer = answer;
   }
 
-  isRisht(answer) {
-    return this.answer === answer;
+  isRight(answer) {
+    return this.answer.toUpperCase() === answer.toUpperCase();
   }
 }
 

@@ -23,12 +23,11 @@ class Model {
     let arrayData = data.split('\n').filter((el) => el !== '');
     this.topics.push(arrayData[0]);
     for (let i = 1; i < arrayData.length; i += 2) {
-      let newCards = new Card(arrayData[0], arrayData[i], arrayData[i + 1]);
-      this.cards.push(newCards)
+      this.cards.push(new Card(arrayData[0], arrayData[i], arrayData[i + 1]))
     }
   }
 
-  getTopic (topic) {
+  getTopic(topic) {
     return this.cards.filter(card => card.topic === this.topics[topic]);
   }
 }
