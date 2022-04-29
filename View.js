@@ -16,8 +16,9 @@ class View {
     return input;
   }
 
-  showTopic(topic) {
-    console.log(topic);
+  showTopics(topics) {
+    for (let i = 0; i < topics.length; i += 1)
+      console.log(`${i + 1}. ${topics[i]}`);
   }
 
   getTopic() {

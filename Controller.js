@@ -13,9 +13,7 @@ class Controller {
   }
 
   async printTopicsController(topicsMenu) {
-    for (const topic of this.model.topics) {
-      this.view.showTopic(topic);
-    }
+    this.view.showTopics(this.model.topics);
     const currentTopic = await this.view.getTopic();
     this.play(currentTopic);
   }
@@ -26,10 +24,17 @@ class Controller {
     do {
       const card = cards[this.currentCardIndex];
       const answer = await this.view.askQuestion(card.question);
-      if (answer === card.answer) { score += 100 / cards.length; }
+      if (answer === card.answer) { 
+        score += 100 / cards.length; 
+        this.view.message('Верно!')
+      } else {
+        this.view.message('Неправильно (');
+        this.view.message(`Правильный ответ: ${card.answer}`);
+      }
       this.currentCardIndex += 1;
     } while (this.currentCardIndex < cards.length);
     this.view.message(`Вы набрали ${score}%!`);
+
   }
 }
 
