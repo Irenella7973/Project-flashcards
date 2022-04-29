@@ -8,7 +8,7 @@ class Card {
   }
 
   isRight(answer) {
-    return this.answer === answer;
+    return this.answer.toUpperCase() === answer.toUpperCase();
   }
 }
 
