@@ -25,6 +25,10 @@ class View {
     const input = prompt('>');
     return input - 1;
   }
+
+  message(msg) {
+    console.log(msg);
+  }
 }
 
 module.exports = View;
