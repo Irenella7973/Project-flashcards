@@ -25,8 +25,8 @@ class Controller {
     // а также дождаться ответа последнего
   }
 
-  async step(index) {
-    const answer = await this.view.askQuestion(model.cards[index]);
+  async step(card) {
+    const answer = await this.view.askQuestion(card.question);
   }
 
   async play(topic) {
