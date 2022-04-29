@@ -28,13 +28,10 @@ class Controller {
       const answer = await this.view.askQuestion(card.question);
       if (answer === card.answer) { score += 100 / cards.length; }
       this.currentCardIndex += 1;
-    } while (this.currentCardIndex < cards.length && answer !== ':q');
+    } while (this.currentCardIndex < cards.length);
     this.view.message(`Вы набрали ${score}%!`);
   }
 }
 
-const model = new Model();
-const controller = new Controller(model, new View());
-controller.run();
 
 module.exports = Controller;
