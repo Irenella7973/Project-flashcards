@@ -12,13 +12,11 @@ class View {
     return input;
   }
 
-  showTopics(topics) {
-    for (let i = 0; i < topics.length; i += 1)
+  selectTopic(topics) {
+    for (let i = 0; i < topics.length; i += 1) {
       console.log(`${i + 1}. ${topics[i]}`);
-  }
-
-  getTopic() {
-    console.log('Номер темы: ');
+    }
+    console.log('\nНомер темы: ');
     const input = prompt('>');
     return input - 1;
   }

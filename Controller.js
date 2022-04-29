@@ -13,8 +13,7 @@ class Controller {
   }
 
   async printTopicsController(topicsMenu) {
-    this.view.showTopics(this.model.topics);
-    const currentTopic = await this.view.getTopic();
+    const currentTopic = await this.view.selectTopic(this.model.topics);
     this.play(currentTopic);
   }
 
