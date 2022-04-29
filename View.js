@@ -1,16 +1,12 @@
 const prompt = require('prompt-sync')();
 
-const readline = require('readline').createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
 class View {
   constructor() {
 
   }
 
   askQuestion(question) {
+    console.log('\n');
     console.log(question);
     const input = prompt('>');
     return input;

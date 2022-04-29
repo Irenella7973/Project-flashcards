@@ -1,10 +1,10 @@
 const Controller = require("./Controller");
-//const Model = require("./Model");
+const Model = require("./Model.js");
 const View = require("./View");
 const mockModel = require('./mockModel');
 
-//const model = new Model
-const model = new mockModel;
+const model = new Model
+//const model = new mockModel;
 const view = new View
 const controller = new Controller(model, view)
 

@@ -1,5 +1,5 @@
-const Model = require('./mockModel');
-const View = require('./View');
+//const Model = require('./mockModel');
+//const View = require('./View');
 
 class Controller {
   constructor(model, view) {
@@ -33,7 +33,7 @@ class Controller {
       }
       this.currentCardIndex += 1;
     } while (this.currentCardIndex < cards.length);
-    this.view.message(`Вы набрали ${score}%!`);
+    this.view.message(`Вы набрали ${Math.round(score)}%!`);
 
   }
 }
